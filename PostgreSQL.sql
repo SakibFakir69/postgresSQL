@@ -83,3 +83,13 @@ from sightings
 ORDER BY sighting_id
 
 -- problem 9
+
+DELETE from  rangers
+
+    WHERE ranger_id in (
+        SELECT ran.ranger_id from rangers ran
+        LEFT JOIN sightings sig on ran.ranger_id=sig.ranger_id
+        WHERE sig.ranger_id is NULL
+
+    )
+   
